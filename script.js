@@ -1,15 +1,24 @@
-function CreateSudokuTable() {
+
+var table = document.getElementById("sudokuTable");
+
+sudokuMatrix = [];
+for (let i = 0; i < 9; i++) {
+    sudokuMatrix[i] = [];
+}
+var sudokuAlap;
+var sudokuMegoldott;
+
+
+
+function TablaKeszites() {
     table = document.getElementById('sudokuTable');
     for (let i = 0; i < 9; i++) {
         const row = table.insertRow(i);
         for (let j = 0; j < 9; j++) {
             const cell = row.insertCell(j);
-            cell.contentEditable = false; // szerkesztés letiltása
+            cell.contentEditable = false;
             cell.className = "feher";
-            // let ujsor = document.getElementById('sudokuTable').cells[j];
 
-            // cell.style.backgroundColor = '#fff'; // Alapértelmezett háttérszín
-            // cell.setAttribute('onclick', `CellClick(${i}, ${j})`);
             cell.addEventListener("click", () => {
                 MezoErtekNoveles(i, j);
             })
@@ -28,8 +37,7 @@ function CreateSudokuTable() {
 
 
 }
-var sudokuAlap;
-var sudokuMegoldott;
+
 
 async function adatLekeres() {
 
@@ -42,14 +50,14 @@ async function adatLekeres() {
     sudokuAlap = data.newboard.grids[0].value;
     sudokuMegoldott = data.newboard.grids[0].solution;
 
-    // console.log(sudokuMegoldott);
+
 
 }
 
-var sudokuMatrix;
+
 async function ujJatek() {
     var result = await adatLekeres();
-    var table = document.getElementById("sudokuTable");
+    
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             cell = table.rows[i].cells[j];
@@ -64,7 +72,7 @@ async function ujJatek() {
         }
     }
     sudokuMatrix = Array.from(sudokuAlap);
-
+    document.getElementById("kitoltes").hidden = false;
 }
 
 
@@ -73,7 +81,21 @@ function kitoltes() {
     button.hidden = false;
 
 
-    var table = document.getElementById("sudokuTable");
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            cell = table.rows[i].cells[j];
+            cell.className = "feher";
+
+          
+
+
+        }
+    }
+
+
+
+   
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             cell = table.rows[i].cells[j];
@@ -111,7 +133,7 @@ function TeljesKitoltesEllenorzese() {
         if (!full)
             break;
         for (let j = 0; j < 9; j++) {
-            if (sudokuMatrix[i][j] == undefined) {
+            if (sudokuMatrix[i][j] == undefined || sudokuMatrix[i][j] == 0) {
                 full = false;
                 break;
             }
@@ -127,83 +149,171 @@ function EllenorzesGombMegjelenitese() {
     document.getElementById("search-button").hidden = false;
 }
 
-function CheckTable() {
-    //Sor és Oszlop ellenőrzés
-    sudokuCheckMatrix = Array.from({ length: 9 }, () => new Array(9).fill(true));
-    for (let sor = 0; sor < 9; sor++) {
-        for (let szamToCheck = 0; szamToCheck < 9; szamToCheck++) {
 
-            for (let j = szamToCheck + 1; j < 9; j++) {
-                if (sudokuMatrix[sor][szamToCheck] == sudokuMatrix[sor][j]) {
-                    ok = false;
-                    sudokuCheckMatrix[sor][szamToCheck] = false;
-                    sudokuCheckMatrix[sor][j] = false;
-                }
-                if (sudokuMatrix[szamToCheck][sor] == sudokuMatrix[j][sor]) {
-                    ok = false;
-                    sudokuCheckMatrix[szamToCheck][sor] = false;
-                    sudokuCheckMatrix[j][sor] = false;
-                }
-            }
-        }
-    }
-    // Szektor ellenőrzés
-    for (let sectS = 0; sectS < 3; sectS++) {
-        for (let sectO = 0; sectO < 3; sectO++) {
-            for (let sorToCheck = sectS * 3; sorToCheck < sectS * 3 + 3; sorToCheck++)
-                for (let oszlopToCheck = sectO * 3; oszlopToCheck < sectO * 3 + 3; oszlopToCheck++) {
-                    for (let sor = sectS * 3; sor < sectS * 3 + 3; sor++)
-                        for (let oszlop = sectO * 3; oszlop < sectO * 3 + 3; oszlop++) {
-                            if (!((sor == sorToCheck) && (oszlop == oszlopToCheck))) {
-                                if (sudokuMatrix[sorToCheck][oszlopToCheck] == sudokuMatrix[sor][oszlop]) {
-                                    sudokuCheckMatrix[sorToCheck][oszlopToCheck] = false;
-                                    sudokuCheckMatrix[sor][oszlop] == false;
-                                }
-                            }
-                        }
-                }
-        }
-    }
 
-    var table = document.getElementById("sudokuTable");
 
-    let hibatlan = true;
+
+
+
+function validSudoku(board) {
+
+    hibas = false;
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if (!sudokuCheckMatrix[i][j])
-                hibatlan = false;
+            const value = board[i][j];
+            // if (value !== '.') {
+                if (!validRow(board, i, j, value) || !validColumn(board, i, j, value) || !validBox(board, i, j, value)) {
+                    // return false;
+                    hibas = true;
+                }
+            // }
         }
     }
+    if (!hibas)
+    {
+        zoldreFestes();
+        }
+    // return true;
+};
 
+
+function zoldreFestes() {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             cell = table.rows[i].cells[j];
-            if (hibatlan) {
-
-                cell.className = "zold feher-betu";
 
 
-            }
-            else {
-                if (sudokuCheckMatrix[i][j])
-                    cell.className = "feher";
-                else
-                    cell.className = "piros";
-            }
+            cell.className = "zold feher-betu";
+
+
+
         }
     }
 }
 
-sudokuMatrix = [];
-for (let i = 0; i < 9; i++) {
-    sudokuMatrix[i] = [];
+//The row function.
+function validRow(board, row, col, value) {
+    // j represents on column
+    for (let j = 0; j < 9; j++) {
+        // check if the current column matches the passed in column
+        if (j !== col) {
+            if (board[row][j] == value) {
+
+                for (let j2 = 0; j2 < 9; j2++) {
+                    cell = table.rows[row].cells[j2];
+                    cell.className = "piros";
+                }
+
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
+
+// The column function.
+function validColumn(board, row, col, value) {
+    // j represents on row
+    for (let i = 0; i < 9; i++) {
+        // check if the current row matches the passed in row
+        if (i !== row) {
+            if (board[i][col] == value) {
+                for (let i2 = 0; i2 < 9; i2++) {
+                    cell = table.rows[i2].cells[col];
+                    cell.className = "piros";
+                }
+
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+//The sub-boxes function.
+function validBox(board, row, col, value) {
+   
+    const startRow = row - (row % 3), startCol = col - (col % 3);
+
+ 
+
+
+    for (let i = startRow; i < startRow + 3; i++) {
+        for (let j = startCol; j < startCol + 3; j++) {
+            // if ((i == row && j != col) || (j == col && i != row) )
+                
+            {
+                
+                if (  board[i][j] == value &&  (i == row && j!= col))
+                {
+                    
+                    for (let i2 = startRow; i2 < startRow + 3; i2++) {
+                        for (let j2 = startCol; j2 < startCol + 3; j2++) {
+                            cell = table.rows[i2].cells[j2];
+                            cell.className = "piros";
+                            
+
+                        }
+                    }
+
+
+                    return false;
+                }
+                
+
+                if (board[i][j] == value && (j == col && i != row)) {
+
+                    for (let i2 = startRow; i2 < startRow + 3; i2++) {
+                        for (let j2 = startCol; j2 < startCol + 3; j2++) {
+                            cell = table.rows[i2].cells[j2];
+                            cell.className = "piros";
+
+
+                        }
+                    }
+
+
+                    return false;
+                }
+
+                if (board[i][j] == value && (j != col && i != row)) {
+
+                    for (let i2 = startRow; i2 < startRow + 3; i2++) {
+                        for (let j2 = startCol; j2 < startCol + 3; j2++) {
+                            cell = table.rows[i2].cells[j2];
+                            cell.className = "piros";
+
+
+                        }
+                    }
+
+
+                    return false;
+                }
+
+            }
+        }
+    }
+
+    return true;
+}
+
+
+
+
+
+
+
 
 search = document.getElementById("search-button");
 
 search.addEventListener("click", () => {
     console.log("Check table");
-    CheckTable();
+    // CheckTable();
+    validSudoku(sudokuMatrix);
+
 })
 
 kitoltesGomb = document.getElementById("kitoltes");
@@ -219,4 +329,4 @@ ujJatekGomb.addEventListener("click", () => {
     ujJatek();
 })
 
-CreateSudokuTable();
+TablaKeszites();
