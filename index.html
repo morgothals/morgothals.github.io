@@ -1,65 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SUDOKU</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-    />
-    <style>
-      body {
-        font-family: "Open Sans", sans-serif;
-        margin: 5%;
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
-    <script src="https://unpkg.com/vue-silentbox@2.3.1/dist/vue-silentbox.min.js"></script>
-    <title>Pick.le: Pick your pics 🥒</title>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Pick.le: Pick your pics 🥒</h1>
-      <h2>{{ callToAction }}</h2>
-      <silent-box :gallery="gallery"></silent-box>
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Oregano&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card main text-center bg-dark bg-opacity-10">
+        <div class="card-body d-flex flex-column justify-content-center align-content-center">
+            <h1>Sudoku Tábla</h1>
+            <table class="user-select-none sudoku" id="sudokuTable"></table>
+
+
+            <p class="card-text"></p>
+
+            <button class="btn btn-light width50 button" id="kitoltes">Kitöltés</button>
+            <button class="btn btn-light  width50  button" id="uj-jatek">Új játék</button>
+            <button id="search-button" class="btn w-25 button" hidden>Ellenőrzés</button>
+
+        </div>
     </div>
 
-    <script>
-      Vue.use(VueSilentbox.default);
-      const app = new Vue({
-        el: "#app",
-        data() {
-          return {
-            callToAction: "Submit your photos of kittehs!",
-            gallery: [],
-          };
-        },
-        methods: {
-          async loadImages() {
-            // TODO: Use the Messaging API to use submitted photos
-            // const response = await fetch("/api/")
-            // TODO: Create a web-based API that matches this expected response
-            this.gallery = [
-              {
-                src: "https://placekitten.com/200/300",
-                description: "Look at this kitteh",
-                alt: "A kitteh",
-                thumbnailWidth: "200px",
-              },
-              {
-                src: "https://placekitten.com/300/300",
-                description: "Another Kitteh",
-                alt: "Cutie",
-                thumbnailWidth: "200px",
-              },
-            ];
-          },
-        },
-        mounted() {
-          this.loadImages();
-        },
-      });
-    </script>
-  </body>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
