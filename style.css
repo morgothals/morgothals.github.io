@@ -3,9 +3,9 @@ table {
     margin: 20px;
 }
 
-*{
-   
-        font-family: 'Ubuntu', sans-serif;
+* {
+
+    font-family: 'Ubuntu', sans-serif;
 }
 
 td {
@@ -17,7 +17,7 @@ td {
     font-weight: 500;
 }
 
-.fekete{
+.fekete {
     background-color: black;
 }
 
@@ -33,40 +33,42 @@ td {
 
 
 
-.feher{
+.feher {
     background-color: white;
 }
 
-.zold{
-    background-color: rgb(19, 129, 59,0.7);
+.zold {
+    background-color: rgb(19, 129, 59, 0.7);
 }
 
-.piros{
+.piros {
     background-color: rgb(241, 4, 4);
 }
 
-.feher-betu{
+.feher-betu {
     color: white;
 }
 
 
-.button{
-  
+.button {
+
     margin: 5px auto 2.5px auto;
     max-width: 300px;
 }
 
-.btop{
+.btop {
     border-top: 2px solid black;
 }
+
 .bleft {
     border-left: 2px solid black;
 }
+
 .bright {
     border-right: 2px solid black;
 }
 
-.bbottom{
+.bbottom {
     border-bottom: 2px solid black;
 }
 
@@ -75,61 +77,69 @@ td {
 
 .user-select-none {
 
-         -moz-user-select: none;
-          -ms-user-select: none; 
-              user-select: none; 
-  }
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 
-  .main{
+.main {
     padding: 2vh;
-    margin: 2vh; 
- }
+    margin: 2vh;
+}
 
- .sudoku{
+.sudoku {
     width: 60vw;
     height: 60vw;
     margin: auto;
- }
+}
 
- #search-button {
-     padding: 10px 20px;
-     background-color: rgb(19, 129, 101);
-     color: white;
-     border: none;
-     box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-     font-size: 1.2 rem;
-     cursor: pointer;
-     border-radius: 5px;
-     margin: 10px auto;
+#search-button {
+    padding: 10px 20px;
+    background-color: rgb(19, 129, 101);
+    color: white;
+    border: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    font-size: 1.2 rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px auto;
 
 
 
- }
+}
 
- .width70 {
-     width: 70%;
- }
+.width70 {
+    width: 70%;
+}
 
- .width50 {
-     width: 50%;
- }
+.width50 {
+    width: 50%;
+}
 
-   .short {
+.short {
     display: none;
-   }
+}
 
-   .long {
-      
+.long {
+
+    display: inline-block;
+}
+
+[hidden] {
+    display: none;
+}
+
+.addDisp {
+    display: inline-block;
+}
+
+@media only screen and (max-width: 500px) {
+    .short {
         display: inline-block;
-   }
+    }
 
-   [hidden] {
-       display: none;
-   }
-
- @media only screen and (max-width: 500px) {
-    .short{display: inline-block;}
-    .long{ display: none;}
- }
-
+    .long {
+        display: none;
+    }
+}

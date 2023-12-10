@@ -73,6 +73,7 @@ async function ujJatek() {
     }
     sudokuMatrix = Array.from(sudokuAlap);
     document.getElementById("kitoltes").hidden = false;
+    EllenorzesGombEltuntetese();
 }
 
 
@@ -106,6 +107,7 @@ function kitoltes() {
         }
     }
     sudokuMatrix = JSON.parse(JSON.stringify(sudokuMegoldott));
+    EllenorzesGombMegjelenitese();
 }
 function MezoErtekNoveles(row, col) {
 
@@ -140,13 +142,19 @@ function TeljesKitoltesEllenorzese() {
         }
     }
     if (full) {
+        console.log("Tábla kitöltve");
         EllenorzesGombMegjelenitese();
     }
 
 }
 function EllenorzesGombMegjelenitese() {
-    var button = document.getElementById("search-button");
-    document.getElementById("search-button").hidden = false;
+
+    document.getElementById("search-button").classList.remove('d-none');
+}
+
+function EllenorzesGombEltuntetese() {
+
+    document.getElementById("search-button").classList.add('d-none');
 }
 
 
