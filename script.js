@@ -250,7 +250,7 @@ function validBox(board, row, col, value) {
     for (let i = startRow; i < startRow + 3; i++) {
         for (let j = startCol; j < startCol + 3; j++) {
 
-            if (i === row && j === col) {
+            if (i == row && j == col) {
                 console.log("start row: " + startRow + " ,i: " + i + " ,j: " + j);
                 continue;
             }
@@ -258,7 +258,7 @@ function validBox(board, row, col, value) {
             else {
 
 
-                if (board[i][j] === value) {
+                if (board[i][j] == value) {
 
                     for (let i2 = startRow; i2 < startRow + 3; i2++) {
                         for (let j2 = startCol; j2 < startCol + 3; j2++) {
