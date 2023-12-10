@@ -57,7 +57,7 @@ async function adatLekeres() {
 
 async function ujJatek() {
     var result = await adatLekeres();
-    
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             cell = table.rows[i].cells[j];
@@ -87,7 +87,7 @@ function kitoltes() {
             cell = table.rows[i].cells[j];
             cell.className = "feher";
 
-          
+
 
 
         }
@@ -95,7 +95,7 @@ function kitoltes() {
 
 
 
-   
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             cell = table.rows[i].cells[j];
@@ -162,17 +162,16 @@ function validSudoku(board) {
         for (let j = 0; j < 9; j++) {
             const value = board[i][j];
             // if (value !== '.') {
-                if (!validRow(board, i, j, value) || !validColumn(board, i, j, value) || !validBox(board, i, j, value)) {
-                    // return false;
-                    hibas = true;
-                }
+            if (!validRow(board, i, j, value) || !validColumn(board, i, j, value) || !validBox(board, i, j, value)) {
+                // return false;
+                hibas = true;
+            }
             // }
         }
     }
-    if (!hibas)
-    {
+    if (!hibas) {
         zoldreFestes();
-        }
+    }
     // return true;
 };
 
@@ -234,36 +233,24 @@ function validColumn(board, row, col, value) {
 
 //The sub-boxes function.
 function validBox(board, row, col, value) {
-   
+
     const startRow = row - (row % 3), startCol = col - (col % 3);
 
- 
+
 
 
     for (let i = startRow; i < startRow + 3; i++) {
         for (let j = startCol; j < startCol + 3; j++) {
-            // if ((i == row && j != col) || (j == col && i != row) )
-                
-            {
-                
-                if (  board[i][j] == value &&  (i == row && j!= col))
-                {
-                    
-                    for (let i2 = startRow; i2 < startRow + 3; i2++) {
-                        for (let j2 = startCol; j2 < startCol + 3; j2++) {
-                            cell = table.rows[i2].cells[j2];
-                            cell.className = "piros";
-                            
 
-                        }
-                    }
+            if (i === row && j === col) {
+                console.log("start row: " + startRow + " ,i: " + i + " ,j: " + j);
+                continue;
+            }
+
+            else {
 
 
-                    return false;
-                }
-                
-
-                if (board[i][j] == value && (j == col && i != row)) {
+                if (board[i][j] === value) {
 
                     for (let i2 = startRow; i2 < startRow + 3; i2++) {
                         for (let j2 = startCol; j2 < startCol + 3; j2++) {
@@ -278,20 +265,8 @@ function validBox(board, row, col, value) {
                     return false;
                 }
 
-                if (board[i][j] == value && (j != col && i != row)) {
-
-                    for (let i2 = startRow; i2 < startRow + 3; i2++) {
-                        for (let j2 = startCol; j2 < startCol + 3; j2++) {
-                            cell = table.rows[i2].cells[j2];
-                            cell.className = "piros";
 
 
-                        }
-                    }
-
-
-                    return false;
-                }
 
             }
         }
