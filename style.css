@@ -1,0 +1,145 @@
+table {
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+* {
+
+    font-family: 'Ubuntu', sans-serif;
+}
+
+td {
+    width: 11.1%;
+    height: 11.1%;
+    text-align: center;
+    border: 1px solid #212529;
+    font-size: 2.5vw;
+    font-weight: 500;
+}
+
+.fekete {
+    background-color: black;
+}
+
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+
+
+
+.feher {
+    background-color: white;
+}
+
+.zold {
+    background-color: rgb(19, 129, 59, 0.7);
+}
+
+.piros {
+    background-color: rgb(241, 4, 4);
+}
+
+.feher-betu {
+    color: white;
+}
+
+
+.button {
+
+    margin: 5px auto 2.5px auto;
+    max-width: 300px;
+}
+
+.btop {
+    border-top: 2px solid black;
+}
+
+.bleft {
+    border-left: 2px solid black;
+}
+
+.bright {
+    border-right: 2px solid black;
+}
+
+.bbottom {
+    border-bottom: 2px solid black;
+}
+
+
+
+
+.user-select-none {
+
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.main {
+    padding: 2vh;
+    margin: 2vh;
+}
+
+.sudoku {
+    width: 60vw;
+    height: 60vw;
+    margin: auto;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: rgb(19, 129, 101);
+    color: white;
+    border: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    font-size: 1.2 rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px auto;
+
+
+
+}
+
+.width70 {
+    width: 70%;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.short {
+    display: none;
+}
+
+.long {
+
+    display: inline-block;
+}
+
+[hidden] {
+    display: none;
+}
+
+.addDisp {
+    display: inline-block;
+}
+
+@media only screen and (max-width: 500px) {
+    .short {
+        display: inline-block;
+    }
+
+    .long {
+        display: none;
+    }
+}
